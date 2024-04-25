@@ -1,0 +1,12 @@
+credentials.py
+.streamlit/secrets.toml
+.vs/*
+utils/__pycache__/*
+utils/*.pyc
+utils/__pycache__/add_logo_and_set_page.cpython-310.pyc
+utils/__pycache__/custom_functions.cpython-310.pyc
+utils/__pycache__/sql_functions.cpython-310.pyc
+.DS_Store
+.DS_Store
+data/results_90_180_days.pkl
+data/results_75_150_days.pkl
