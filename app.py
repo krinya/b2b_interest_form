@@ -58,6 +58,8 @@ with main_cointainer:
 
 if st.session_state['send_in_button_pressed'] == 1:
 
+    st.session_state['send_in_button_pressed'] = 0
+    
     validate_inputs_true_false = validate_inputs()
 
     if validate_inputs_true_false:
@@ -82,8 +84,6 @@ if st.session_state['send_in_button_pressed'] == 1:
             st.markdown(f"Egyéb bármi más megjegyzés, speciális kérdés: {st.session_state['comments']}")
     else:
         st.error("Az árajánlat kérés nem sikerült, kérjük ellenőrizd az adatokat és próbáld újra. Köszönjük!")
-
-    st.session_state['send_in_button_pressed'] = 0
 
 # st.markdown("---")
 
