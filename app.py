@@ -52,7 +52,7 @@ with main_cointainer:
     st.markdown("#### Egyéb informaciok")
     # dropdown
     list_of_heared_from_us_options = ["Google", "Facebook", "Ismerős ajánlotta", "Egyéb"]
-    st.selectbox("Honnan hallottál rólunk?", list_of_heared_from_us_options, key="heard_from", index=None, placeholder="Kerjuk valassz")
+    st.selectbox("Honnan hallottál rólunk?", list_of_heared_from_us_options, key="heard_from", index=None, placeholder="Kerjük válassz a listából.")
     st.text_area("Egyéb bármi más megjegyzés, speciális kérdés", key="comments", placeholder="Ide írhatod a megjegyzéseidet")
     st.button("Árajánlat beküldése", on_click=form_send_in_button_press)
 
