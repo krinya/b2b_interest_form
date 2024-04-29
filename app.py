@@ -6,7 +6,7 @@ import base64
 from utils.app_functions import validate_inputs
 
 # set the page layout and title
-st.set_page_config(layout="centered", page_title="CleanGo B2B Erdeklodesi Felulet")
+st.set_page_config(layout="centered", page_title="CleanGo B2B Erdeklodesi Felulet", page_icon="img/cleango-logo-small.png")
 
 if 'send_in_button_pressed' not in st.session_state:
     st.session_state['send_in_button_pressed'] = 0
@@ -20,7 +20,7 @@ if 'first_step_button_pressed' not in st.session_state:
 def form_first_step_button_press():
     st.session_state['first_step_button_pressed'] = 1
 
-st.image("cleango-logo-big.png", width=200)
+st.markdown(f'![CleanGo Logo](https://cleango.hu/sitebuild/img/logo-text.svg)')
 st.markdown("# B2B Erdeklodesi Felulet")
 st.markdown(":car: Ha szeretne ajanlatot kapni a CleanGo-tol, kerjuk toltse ki az alabbi formot.")
 
@@ -30,8 +30,8 @@ main_cointainer = st.container(border=True)
 with main_cointainer:
     st.markdown("#### Kapcsolati adatok")
     st.text_input("**Cegnev**", key="company_name")
-    st.text_input("Kapcsolattarto neve", key="contact_name")
-    st.text_input("Telefonszam", key="phone_number")
+    st.text_input("Kapcsolattarto neve", key="contact_name", placeholder="Vezeteknev Keresztnev")
+    st.text_input("Telefonszam", key="phone_number", placeholder="+36")
     st.text_input("Email cim", key="email")
     st.markdown("#### Mosasra vonatkozo adatok")
     st.number_input("Osszesen mennyi autoval rendelkezel?", key="total_cars", min_value=0, value=None)
