@@ -3,12 +3,10 @@ import os
 import datetime
 import pytz
 import base64
+from utils.app_functions import validate_inputs
 
 # set the page layout and title
 st.set_page_config(layout="centered", page_title="CleanGo B2B Erdeklodesi Felulet")
-
-if 'first_step_button_pressed' not in st.session_state:
-    st.session_state['first_step_button_pressed'] = 0
 
 if 'send_in_button_pressed' not in st.session_state:
     st.session_state['send_in_button_pressed'] = 0
@@ -16,51 +14,11 @@ if 'send_in_button_pressed' not in st.session_state:
 def form_send_in_button_press():
     st.session_state['send_in_button_pressed'] = 1
 
+if 'first_step_button_pressed' not in st.session_state:
+    st.session_state['first_step_button_pressed'] = 0
+
 def form_first_step_button_press():
     st.session_state['first_step_button_pressed'] = 1
-
-def validate_inputs():
-    if st.session_state['company_name'] == "":
-        st.error("Cegnev nem lehet ures")
-        return False
-    if st.session_state['contact_name'] == "":
-        st.error("Kapcsolattarto neve nem lehet ures")
-        return False
-    if st.session_state['phone_number'] == "":
-        st.error("Telefonszam nem lehet ures")
-        return False
-    # telefonszam needs to contains only numbers or "+" sign
-    if not st.session_state['phone_number'].replace("+", "").isdigit():
-        st.error("Telefonszam nem megfelelo, csak szamokat es '+'-t tartalmazhat")
-        return False
-    if st.session_state['email'] == "":
-        st.error("Email cim nem lehet ures")
-        return False
-    if st.session_state['email'].find("@") == -1:
-        st.error("Email cim nem megfelelo, nem tartalmaz @ karaktert")
-        return False
-    if st.session_state['email'].find(".") == -1:
-        st.error("Email cim nem megfelelo, nem tartalmaz . karaktert")
-        return False
-    if st.session_state['total_cars'] == "" or st.session_state['total_cars'] is None:
-        st.error("Osszesen mennyi autoval rendelkezel? nem lehet ures")
-        return False
-    if st.session_state['monthly_cleaning'] == "" or st.session_state['monthly_cleaning'] is None:
-        st.error("Hany autot tervezel takarittatni havonta? nem lehet ures")
-        return False
-    if st.session_state['location_zip'] == "" or st.session_state['location_zip'] is None:
-        st.error("Mosas helyszinenek iranyitoszama? nem lehet ures")
-        return False
-    if st.session_state['parking_options'] == "" or st.session_state['parking_options'] is None:
-        st.error("Milyen parkolasi lehetosegekkel rendelkezel? nem lehet ures")
-        return False
-    if st.session_state['car_types'] == "" or st.session_state['car_types'] is None:
-        st.error("Milyen autokat szeretnel takarittatni? nem lehet ures")
-        return False
-    if st.session_state['heard_from'] == "" or st.session_state['heard_from'] is None:
-        st.error("Honnan hallottal rolunk? nem lehet ures")
-        return False
-    return True
 
 st.markdown("# CleanGo B2B Erdeklodesi Felulet")
 st.markdown("Ha szeretne ajanlatot kapni, kerjuk toltse ki az alabbi formot.")
@@ -87,16 +45,17 @@ with main_cointainer:
     list_of_heared_from_us_options = ["Google", "Facebook", "Ismeros", "Egyeb"]
     st.selectbox("Honnan hallottal rolunk?", list_of_heared_from_us_options, key="heard_from", index=None, placeholder="Kerjuk valassz")
     st.text_area("Egyeb barmi mas megjegyzes", key="comments")
-    st.button("Arajanlat kerese", on_click=form_first_step_button_press)
+    st.button("Arajanlat kerese", on_click=form_send_in_button_press)
 
-if st.session_state['first_step_button_pressed'] == 1:
+if st.session_state['send_in_button_pressed'] == 1:
 
     validate_inputs_true_false = validate_inputs()
 
     if validate_inputs_true_false:
-        st.success("Az ajanlatkeres sikeresen elkuldve. Hamarosan felvesszuk onnel a kapcsolatot. Koszonjuk!")
+
+        st.success("Az ajanlatkeres sikeresen elkuldve. Hamarosan felvesszuk veled a kapcsolatot. Koszonjuk!")
         st.markdown("Addig tekintse meg a kovetkezo dolgokat: Es ide irhatunk barmit, amit szeretnenk.")
-        st.markdown("***")
+        
         filled_in_data_container = st.container(border=True)
 
         with filled_in_data_container:
@@ -114,6 +73,7 @@ if st.session_state['first_step_button_pressed'] == 1:
             st.markdown(f"Egyeb barmi mas megjegyzes: {st.session_state['comments']}")
     else:
         st.error("Az ajanlatkeres nem sikerult, mert nem toltotte ki helyesen a mezoket.")
+
     st.session_state['send_in_button_pressed'] = 0
 
 # st.markdown("---")
