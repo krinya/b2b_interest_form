@@ -8,6 +8,14 @@ from utils.app_functions import validate_inputs
 # set the page layout and title
 st.set_page_config(layout="centered", page_title="CleanGo B2B Erdeklodesi Felulet", page_icon="img/cleango-logo-small.png")
 
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+
 if 'send_in_button_pressed' not in st.session_state:
     st.session_state['send_in_button_pressed'] = 0
 
