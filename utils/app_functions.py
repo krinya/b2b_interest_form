@@ -27,6 +27,9 @@ def validate_inputs():
     if st.session_state['email'].find(".") == -1:
         st.error("Email cim nem megfelelo, nem tartalmaz . karaktert")
         return False
+    if st.session_state['email'].find(" ") != -1:
+        st.error("Email cim nem megfelelo, nem tartalmazhat szokozt")
+        return False
     if st.session_state['total_cars'] == "" or st.session_state['total_cars'] is None:
         st.error("Osszesen mennyi autoval rendelkezel? nem lehet ures")
         return False

@@ -20,8 +20,9 @@ if 'first_step_button_pressed' not in st.session_state:
 def form_first_step_button_press():
     st.session_state['first_step_button_pressed'] = 1
 
-st.markdown("# CleanGo B2B Erdeklodesi Felulet")
-st.markdown("Ha szeretne ajanlatot kapni, kerjuk toltse ki az alabbi formot.")
+st.image("cleango-logo-big.png", width=200)
+st.markdown("# B2B Erdeklodesi Felulet")
+st.markdown(":car: Ha szeretne ajanlatot kapni a CleanGo-tol, kerjuk toltse ki az alabbi formot.")
 
 main_cointainer = st.container(border=True)
 
