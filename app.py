@@ -30,36 +30,36 @@ def form_first_step_button_press():
 
 st.markdown(f'![CleanGo Logo](https://cleango.hu/sitebuild/img/logo-text.svg)')
 st.markdown("# B2B Árajánlat kérő felület")
-st.markdown(":car: Ha szeretnél B2B árajánlatot kapni a CleanGo-tol, akkor töltsd ki az alabbi ürlapot, és mi pár napon belül felvesszuk veled a kapcsolatot. :car:")
+st.markdown(":car: Ha szeretnél B2B árajánlatot kapni a Cleango-tól, akkor töltsd ki az alábbi űrlapot, és mi pár napon belül felvesszük veled a kapcsolatot. :car:")
 
 main_cointainer = st.container(border=True)
 
 # Create a form container
 with main_cointainer:
     st.markdown("#### Kapcsolati adatok")
-    st.text_input("Cégnev", key="company_name")
+    st.text_input("Cégnév", key="company_name")
     st.text_input("Kapcsolattartó neve", key="contact_name", placeholder="Vezetéknév Keresztnév")
     st.text_input("Telefonszám", key="phone_number", placeholder="+36")
     st.text_input("Email cím", key="email")
     st.markdown("#### Mosásra vonatkozó adatok")
     st.number_input("Összesen mennyi autóval rendelkezel?", key="total_cars", min_value=0, value=None)
     st.number_input("Hány autót tervezel takaríttatni havonta?", key="monthly_cleaning", min_value=0, value=None)
-    st.number_input("Mosás helyszinének iranyítószáma?", key="location_zip", min_value=1000, max_value = 10000, value=None, placeholder=1234)
+    st.number_input("Kérjük add meg az irányitószámot, ahová a mosásokat rendelnéd.", key="location_zip", min_value=1000, max_value = 10000, value=None, placeholder=1234)
     list_of_parking_options = ["Fedett", "Szabadtéri", "Mindkettő"]
     st.radio("Milyen parkolási lehetőségekkel rendelkezel?", list_of_parking_options, key="parking_options", index=None)
-    list_of_car_types_options = ["Személyautó", "Nem Személyautó", "Mindkettő"]
+    list_of_car_types_options = ["Személyautó", "Tehergépjármű", "Mindkettő"]
     st.radio("Milyen autókat szeretnél takaríttatni?", list_of_car_types_options, key="car_types", index=None)
-    st.markdown("#### Egyéb informaciok")
+    st.markdown("#### Egyéb informáciok")
     # dropdown
     list_of_heared_from_us_options = ["Google", "Facebook", "Ismerős ajánlotta", "Egyéb"]
     st.selectbox("Honnan hallottál rólunk?", list_of_heared_from_us_options, key="heard_from", index=None, placeholder="Kerjük válassz a listából.")
-    st.text_area("Egyéb bármi más megjegyzés, speciális kérdés", key="comments", placeholder="Ide írhatod a megjegyzéseidet")
+    st.text_area("Ha van bármi kérdésed, akkor itt jelezheted nekünk.", key="comments", placeholder="Ide írhatod a megjegyzéseidet")
     st.button("Árajánlat beküldése", on_click=form_send_in_button_press)
 
 if st.session_state['send_in_button_pressed'] == 1:
 
     st.session_state['send_in_button_pressed'] = 0
-    
+
     validate_inputs_true_false = validate_inputs()
 
     if validate_inputs_true_false:
