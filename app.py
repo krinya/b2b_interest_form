@@ -37,11 +37,13 @@ main_cointainer = st.container(border=True)
 # Create a form container
 with main_cointainer:
     st.markdown("#### Kapcsolati adatok")
+    st.markdown("Ezeken az elérhetőségeken fogunk felvenni veled kapcsolatot.")
     st.text_input("Cégnév", key="company_name")
     st.text_input("Kapcsolattartó neve", key="contact_name", placeholder="Vezetéknév Keresztnév")
     st.text_input("Telefonszám", key="phone_number", placeholder="+36")
     st.text_input("Email cím", key="email")
     st.markdown("#### Mosásra vonatkozó adatok")
+    st.markdown("Ezek az adaok segítenek nekünk az árajánlat elkészítésében.")
     st.number_input("Összesen mennyi autóval rendelkezel?", key="total_cars", min_value=0, value=None)
     st.number_input("Hány autót tervezel takaríttatni havonta?", key="monthly_cleaning", min_value=0, value=None)
     st.number_input("Kérjük add meg az irányitószámot, ahová a mosásokat rendelnéd.", key="location_zip", min_value=1000, max_value = 10000, value=None, placeholder=1234)
@@ -51,7 +53,7 @@ with main_cointainer:
     st.radio("Milyen autókat szeretnél takaríttatni?", list_of_car_types_options, key="car_types", index=None)
     st.markdown("#### Egyéb informáciok")
     # dropdown
-    list_of_heared_from_us_options = ["Google", "Facebook", "Ismerős ajánlotta", "Egyéb"]
+    list_of_heared_from_us_options = ["A honlapról jöttem ide", "Google", "Facebook", "Ismerős ajánlotta", "Egyéb", "Nem emlékszem"]
     st.selectbox("Honnan hallottál rólunk?", list_of_heared_from_us_options, key="heard_from", index=None, placeholder="Kerjük válassz a listából.")
     st.text_area("Ha van bármi kérdésed, akkor itt jelezheted nekünk.", key="comments", placeholder="Ide írhatod a megjegyzéseidet")
     st.button("Árajánlat beküldése", on_click=form_send_in_button_press)
@@ -71,17 +73,17 @@ if st.session_state['send_in_button_pressed'] == 1:
 
         with filled_in_data_container:
             st.markdown("#### Az elküldott árajánlat kérés tartalma")
-            st.markdown(f"Cégnev: {st.session_state['company_name']}")
+            st.markdown(f"Cégnév: {st.session_state['company_name']}")
             st.markdown(f"Kapcsolattartó neve: {st.session_state['contact_name']}")
             st.markdown(f"Telefonszám: {st.session_state['phone_number']}")
             st.markdown(f"Email cím: {st.session_state['email']}")
             st.markdown(f"Összesen mennyi autóval rendelkezel?: {st.session_state['total_cars']}")
-            st.markdown(f"Hány autot tervezel takaríttatni havonta?: {st.session_state['monthly_cleaning']}")
-            st.markdown(f"Mosás helyszinének iranyítószáma?: {st.session_state['location_zip']}")
+            st.markdown(f"Hány autót tervezel takaríttatni havonta?: {st.session_state['monthly_cleaning']}")
+            st.markdown(f"Kérjük add meg az irányitószámot, ahová a mosásokat rendelnéd.: {st.session_state['location_zip']}")
             st.markdown(f"Milyen parkolási lehetőségekkel rendelkezel?: {st.session_state['parking_options']}")
             st.markdown(f"Milyen autókat szeretnél takaríttatni?: {st.session_state['car_types']}")
             st.markdown(f"Honnan hallottál rólunk?: {st.session_state['heard_from']}")
-            st.markdown(f"Egyéb bármi más megjegyzés, speciális kérdés: {st.session_state['comments']}")
+            st.markdown(f"Egyéb megjegyzés: {st.session_state['comments']}")
     else:
         st.error("Az árajánlat kérés nem sikerült, kérjük ellenőrizd az adatokat és próbáld újra. Köszönjük!")
 
