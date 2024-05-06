@@ -43,7 +43,7 @@ with main_cointainer:
     st.text_input("Telefonszám", key="phone_number", placeholder="+36")
     st.text_input("Email cím", key="email")
     st.markdown("#### Mosásra vonatkozó adatok")
-    st.markdown("Ezek az adaok segítenek nekünk az árajánlat elkészítésében.")
+    st.markdown("Ezek az adatok segítenek nekünk az árajánlat elkészítésében.")
     st.number_input("Összesen mennyi autóval rendelkezel?", key="total_cars", min_value=0, value=None)
     st.number_input("Hány autót tervezel takaríttatni havonta?", key="monthly_cleaning", min_value=0, value=None)
     st.number_input("Kérjük add meg az irányitószámot, ahová a mosásokat rendelnéd.", key="location_zip", min_value=1000, max_value = 10000, value=None, placeholder=1234)
